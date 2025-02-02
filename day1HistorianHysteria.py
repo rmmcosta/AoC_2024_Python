@@ -14,6 +14,27 @@ def calculateTotalDistance(l1, l2):
 
     print(sum)
 
+def calculateSimilarityScore(l1, l2):
+    """
+    Calculate a total similarity score by adding up each number in the left list
+    after multiplying it by the number of times that number appears in the right list.
+    :param l1:
+    :param l2:
+    :return:
+    """
+    similarityScore = 0
+    for lValue in l1:
+        similarityScore+=lValue*findMatches(lValue,l2)
+    print(similarityScore)
+    return similarityScore
+
+def findMatches(value, values):
+    count = 0
+    for currValue in values:
+        if currValue == value:
+            count+=1
+    return count
+
 def sort(unsortedList):
     hasSwapped = True
     while(hasSwapped):
@@ -47,8 +68,10 @@ def processData(filename):
            l1.append(int(parts[0]))
            l2.append(int(parts[1]))
     calculateTotalDistance(l1,l2)
+    calculateSimilarityScore(l1,l2)
 
 #calculateTotalDistance(l1,l2)
+#calculateSimilarityScore(l1,l2)
 
 if len(sys.argv) > 1:
     filename = sys.argv[1]
